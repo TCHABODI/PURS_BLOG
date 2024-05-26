@@ -49,10 +49,10 @@ https://templatemo.com/tm-581-kind-heart-charity
 -----------------------------------------*/
 :root {
   --white-color:                  #ffffff;
-  --primary-color:                #5bc1ac;
-  --secondary-color:              #5a6f80;
+  --primary-color:                #196A62;
+  --secondary-color:              #196A62;
   --section-bg-color:             #f0f8ff;
-  --site-footer-bg-color:         #44525d;
+  --site-footer-bg-color:         #ffffff;
   --custom-btn-bg-color:          #597081;
   --custom-btn-bg-hover-color:    #5bc1ac;
   --dark-color:                   #000000;
@@ -175,8 +175,11 @@ strong {
   SECTION               
 -----------------------------------------*/
 .section-padding {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.mission-section{
+    background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
 }
 
 .section-bg {
@@ -203,14 +206,18 @@ strong {
 -----------------------------------------*/
 .custom-block-wrap {
   background: var(--white-color);
-  border-radius: var(--border-radius-medium);
+  border-radius: 0px;
   position: relative;
   overflow: hidden;
   transition: all 0.5s;
+  border: 1px solidvar(--primary-color);
+  padding: 5px;
 }
+
 
 .custom-block-wrap:hover {
   box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+
 }
 
 .custom-block-body {
@@ -264,8 +271,21 @@ strong {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
-
+/*---------------------------------------
+  CUSTOM TEXT COLOR
+-----------------------------------------*/
+.text-green{
+    color: var(--secondary-color);
+    opacity: 1;
+}
+.text-green-bg {
+    position: relative; /* Nécessaire pour le pseudo-élément ::after */
+    display: inline-block; /* Assure que le pseudo-élément est aligné correctement */
+    color: var(--secondary-color); /* Utilisation de la couleur définie par la variable CSS */
+    background-color: white; /* Fond blanc opaque */
+    padding: 5px 10px; /* Ajout de padding pour espacer le texte de l'arrière-plan */
+    border-radius: 4px; /* Arrondir légèrement les coins pour un style plus doux */
+}
 /*---------------------------------------
   CUSTOM TEXT BOX               
 -----------------------------------------*/
@@ -559,9 +579,9 @@ strong {
   HERO & HERO SLIDE         
 -----------------------------------------*/
 .hero-section-full-height {
-  height: 680px;
-  min-height: 680px;
-  position: relative;
+  height: 600px;
+  min-height: auto;
+  background: var(--primary-color);
 }
 
 .carousel:hover .carousel-control-next-icon, 
@@ -570,35 +590,47 @@ strong {
 }
 
 #hero-slide .carousel-item {
-  height: 680px;
-  min-height: 680px;
+  height: 500px;
+  min-height: 500px;
 }
 
 #hero-slide .carousel-caption {
-  background: var(--white-color);
-  clip-path: polygon(100% 100%, 100% 150px, 0 100%);
-  color: var(--secondary-color);
-  top: 1px;
-  bottom: -1px;
-  right: 0;
-  left: auto;
-  text-align: right;
-  min-width: 680px;
-  min-height: 680px;
-  padding: 100px 100px 50px 100px;
+  /* Appliquer la couleur primaire définie dans les variables CSS */
+  color: var(--primary-color);
+  /* Position absolue par rapport à l'image */
+  position: absolute;
+  /* Positionne le bas de la légende en bas de l'image */
+  bottom: 15px;
+  /* Centrer horizontalement */
+  left: 50%;
+  /* Centrer horizontalement */
+  transform: translateX(-50%);
+  /* Centre le texte à l'intérieur de la légende */
+  text-align: center;
+  /* Ajuste le padding selon vos besoins */
+  padding: 10px 10px;
+  /* Assurez-vous que la légende est au-dessus de l'image */
+  z-index: 1;
+  /* Ajoute un fond semi-transparent pour mieux lire le texte */
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
 }
 
+
+
+
 .carousel-image {
-  display: block;
   width: 100%;
-  min-height: 680px;
+  max-height: 500px;
+  min-height: auto;
+  object-fit: cover;
 }
 
 #hero-slide .carousel-indicators-wrap {
   position: absolute;
   bottom: 0;
   right: 0;
-  left: 0;
+  left: 0px;
 }
 
 #hero-slide .carousel-indicators {
@@ -616,9 +648,9 @@ strong {
 .carousel-control-prev-icon {
   background-color: var(--secondary-color);
   border-radius: var(--border-radius-large);
-  background-size: 60% 60%;
-  width: 80px;
-  height: 80px;
+  background-size: 40% 40%;
+  width: 60px;
+  height: 40px;
   opacity: 0;
   transition: all 0.5s;
 }
@@ -783,7 +815,7 @@ strong {
   NEWS         
 -----------------------------------------*/
 .news-detail-header-section {
-  background-image: url('../images/news/close-up-volunteer-oganizing-stuff-donation.jpg');
+ /* background-image: url('../images/news/close-up-volunteer-oganizing-stuff-donation.jpg'); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -933,7 +965,19 @@ blockquote::before {
   width: 150px;
   height: 150px;
 }
-
+.actualite {
+  position: relative; /* Nécessaire pour le pseudo-élément ::after */
+  display: inline-block; /* Assure que le pseudo-élément est aligné correctement */
+}
+.actualite::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: 2px; /* Ajustez l'épaisseur du soulignement */
+  background-color: white; /* Couleur du soulignement */
+}
 
 /*---------------------------------------
   TESTIMONIAL CAROUSEL              
@@ -1045,12 +1089,12 @@ blockquote::before {
 #testimonial-carousel .carousel-indicators li,
 #testimonial-carousel .carousel-indicators li::before {
   width: 45px;
-  height: 45px; 
+  height: 45px;
 }
 
 #testimonial-carousel .carousel-indicators .avatar-image {
-  width: 45px;
-  height: 45px; 
+  width: 15px;
+  height: 15px;
 }
 
 #testimonial-carousel .carousel-indicators .active,
@@ -1457,6 +1501,8 @@ blockquote::before {
 
   .hero-section-full-height {
     height: inherit;
+    background: var(--secondary-color);
+    position: relative;
   }
 
   .carousel:hover .carousel-control-next-icon, 
@@ -1553,11 +1599,12 @@ blockquote::before {
   }
 
   .contact-info-wrap {
-    padding-top: 0;
+    padding-top: 200;
   }
 
   .site-footer {
-    padding-top: 50px;
+    padding-top: 20px;
+
   }
 
   .copyright-text-wrap {
@@ -1566,7 +1613,7 @@ blockquote::before {
 
   .site-footer-bottom {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 20px;
   }
 
   .site-footer-bottom .footer-menu {
@@ -1592,11 +1639,13 @@ blockquote::before {
 
 @media screen and (max-width: 480px) {
   h1 {
-    font-size: 40px;
+    font-size: 30px;
   }
 
   h2 {
     font-size: 28px;
+    color: black;
+    opacity: 1;
   }
 
   h3 {
@@ -1613,7 +1662,7 @@ blockquote::before {
 
   #hero-slide .carousel-caption {
     min-width: inherit;
-    padding-bottom: 30px;
+    padding-bottom:50px;
   }
 
   .carousel-control-next-icon, 

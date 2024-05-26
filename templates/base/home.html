@@ -1,88 +1,16 @@
+{% extends 'base/base.html' %}
 {% load static %}
-<!doctype html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block content %}
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>PURS</title>
-
-    <!-- CSS FILES -->
-    <link href="{% static 'website/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <link href=" {% static 'website/css/bootstrap-icons.css' %}" rel="stylesheet">
-
-    <link href="{% static 'website/css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
-    <!--
-
-TemplateMo 581 Kind Heart Charity
-
-https://templatemo.com/tm-581-kind-heart-charity
-
--->
-
-</head>
-
-<body id="section_1">
-
-    <header class="site-header">
+    <nav class="navbar navbar-expand-lg bg-white shadow-lg">
         <div class="container">
-            <div class="row">
-
-                <div class="col-lg-8 col-12 d-flex flex-wrap">
-                    <p class="d-flex me-4 mb-0">
-                        <i class="bi-geo-alt me-2"></i>
-                        5eme étage de l’immeuble SGI-Togo GTA-Lomé
-                    </p>
-
-                    <p class="d-flex mb-0">
-                        <i class="bi-envelope me-2"></i>
-
-                        <a href="mailto:coordination.generale@purs.gouv.tg">
-                            coordination.generale@purs.gouv.tg
-                        </a>
-                    </p>
-                </div>
-
-                <div class="col-lg-3 col-12 ms-auto d-lg-block d-none">
-                    <ul class="social-icon">
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-twitter"></a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-facebook"></a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-instagram"></a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-youtube"></a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-whatsapp"></a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </header>
-
-    <nav class="navbar navbar-expand-lg bg-light shadow-lg">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand " href="#">
                 <img src="{% static 'website/images/rtg.jpeg' %}" class="logo img-fluid" alt="logo republique togolaise">
-                <span class="col-lg-8 col-12 d-flex flex-wrap">
+                <span>
                     PURS
-                    <small>Programme d’urgence de renforcement de la résilience </small>
+                    <small >Programme d’urgence de  </small>
+                    <small > renforcement de la résilience </small>
                     <small>et de la sécurité des communautés</small>
                 </span>
             </a>
@@ -92,22 +20,22 @@ https://templatemo.com/tm-581-kind-heart-charity
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse bg-white" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#top">Home</a>
+                        <a class="nav-link click-scroll" href="#top">Accueil</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_2">About</a>
+                        <a class="nav-link click-scroll" href="#section_2">A propos</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_3">Causes</a>
+                        <a class="nav-link click-scroll" href="#section_3">Nos actions</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_4">Volunteer</a>
+                        <a class="nav-link click-scroll" href="#section_4">Blog</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -123,11 +51,11 @@ https://templatemo.com/tm-581-kind-heart-charity
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="contact.html">Contact</a>
+                        <a class="nav-link click-scroll" href="contact.html">Contactes</a>
                     </li>
 
                     <li class="nav-item ms-3">
-                        <a class="nav-link custom-btn custom-border-btn btn" href="donate.html">Donate</a>
+                        <a class="nav-link custom-btn custom-border-btn btn" href="donate.html">D</a>
                     </li>
                 </ul>
             </div>
@@ -135,22 +63,21 @@ https://templatemo.com/tm-581-kind-heart-charity
     </nav>
 
     <main>
-
-        <section class="hero-section hero-section-full-height">
+        <section class="hero-section hero-section-full-height ">
             <div class="container-fluid">
                 <div class="row">
+                    <h3 class="text-light py-2 mt-2">À la Une</h3>
+                    <div id="hero-slide" class="carousel slide" data-bs-ride="carousel">
 
-                    <div class="col-lg-12 col-12 p-0">
-                        <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
+
                                 <div class="carousel-item active">
                                     <img src="{% static 'website/images/slide/volunteer-helping-with-donation-box.jpg' %}"
                                         class="carousel-image img-fluid" alt="...">
 
-                                    <div class="carousel-caption d-flex flex-column justify-content-end">
-                                        <h1>Nos Actions </h1>
-
-                                        <p>Quelques images de actions du PURS</p>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5 class="text-green-bg"> RECENSEMENT DES DEPLACES </h5>
+                                        <p class="text-light"> les deplacement interne et externe lié au debordement de la crise sahelienne</p>
                                     </div>
                                 </div>
 
@@ -158,10 +85,9 @@ https://templatemo.com/tm-581-kind-heart-charity
                                     <img src="{% static 'website/images/slide/volunteer-selecting-organizing-clothes-donations-charity.jpg' %}"
                                         class="carousel-image img-fluid" alt="...">
 
-                                    <div class="carousel-caption d-flex flex-column justify-content-end">
-                                        <h1>Non-profit</h1>
-
-                                        <p>You can support us to grow more</p>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5 class="text-green-bg text-green"> FCV AU TOGO </h5>
+                                        <p class="text-light">Fragilité conflits et violences au togo </p>
                                     </div>
                                 </div>
 
@@ -169,10 +95,9 @@ https://templatemo.com/tm-581-kind-heart-charity
                                     <img src="{% static 'website/images/slide/medium-shot-people-collecting-donations.jpg' %}"
                                         class="carousel-image img-fluid" alt="...">
 
-                                    <div class="carousel-caption d-flex flex-column justify-content-end">
-                                        <h1>Humanity</h1>
-
-                                        <p>Please tell your friends about our website</p>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5 class="text-green-bg"> LE DCC </h5>
+                                        <p class="text-light">Le developpement conduit par les comunautés</p>
                                     </div>
                                 </div>
                             </div>
@@ -191,17 +116,132 @@ https://templatemo.com/tm-581-kind-heart-charity
                         </div>
                     </div>
 
+
                 </div>
             </div>
         </section>
 
+        <section class="section-padding actuality-section" id="section_2">
+            <div class="container">
+                <div class="row">
 
-        <section class="section-padding">
+                    <div class="col-lg-12 col-12 text-center mb-4">
+                        <h2 class=" text-green">Actualités</h2>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="custom-block-wrap">
+                            <img src="{% static 'website/images/causes/group-african-kids-paying-attention-class.jpg' %}"
+                                class="custom-block-image img-fluid" alt="">
+
+                            <div class="custom-block">
+                                <div class="custom-block-body">
+                                    <h5 class="mb-3">Children Education</h5>
+
+                                    <p>Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito</p>
+
+                                    <div class="progress mt-4">
+                                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center my-2">
+                                        <p class="mb-0">
+                                            <strong>Raised:</strong>
+                                            $18,500
+                                        </p>
+
+                                        <p class="ms-auto mb-0">
+                                            <strong>Goal:</strong>
+                                            $32,000
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <a href="donate.html" class="custom-btn btn">Donate now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-border col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="custom-block-wrap border-2">
+                            <img src="{% static 'website/images/causes/poor-child-landfill-looks-forward-with-hope.jpg' %}"
+                                class="custom-block-image img-fluid" alt="">
+
+                            <div class="custom-block">
+                                <div class="custom-block-body">
+                                    <h5 class="mb-3">Poverty Development</h5>
+
+                                    <p>Sed leo nisl, posuere at molestie ac, suscipit auctor mauris. Etiam quis metus
+                                        tempor</p>
+
+                                    <div class="progress mt-4">
+                                        <div class="progress-bar w-50" role="progressbar" aria-valuenow="50"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center my-2">
+                                        <p class="mb-0">
+                                            <strong>Raised:</strong>
+                                            $27,600
+                                        </p>
+
+                                        <p class="ms-auto mb-0">
+                                            <strong>Goal:</strong>
+                                            $60,000
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <a href="donate.html" class="custom-btn btn">Donate now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="custom-block-wrap">
+                            <img src="{% static 'website/images/causes/african-woman-pouring-water-recipient-outdoors.jpg' %}"
+                                class="custom-block-image img-fluid" alt="">
+
+                            <div class="custom-block">
+                                <div class="custom-block-body">
+                                    <h5 class="mb-3">Supply drinking water</h5>
+
+                                    <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+                                    </p>
+
+                                    <div class="progress mt-4">
+                                        <div class="progress-bar w-100" role="progressbar" aria-valuenow="100"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center my-2">
+                                        <p class="mb-0">
+                                            <strong>Raised:</strong>
+                                            $84,600
+                                        </p>
+
+                                        <p class="ms-auto mb-0">
+                                            <strong>Goal:</strong>
+                                            $100,000
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <a href="donate.html" class="custom-btn btn">Donate now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class=" mission-section section-padding">
             <div class="container">
                 <div class="row">
 
                     <div class="col-lg-10 col-12 text-center mx-auto">
-                        <h2 class="mb-5">Welcome to Kind Heart Charity</h2>
+                        <h2 class="mb-5 mt-2"> Notre Mission </h2>
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
@@ -209,7 +249,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <a href="donate.html" class="d-block">
                                 <img src="{% static 'website/images/icons/hands.png' %}" class="featured-block-image img-fluid" alt="">
 
-                                <p class="featured-block-text">Become a <strong>volunteer</strong></p>
+                                <p class="featured-block-text"> <strong>La résilience </strong>des populations</p>
                             </a>
                         </div>
                     </div>
@@ -219,7 +259,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <a href="donate.html" class="d-block">
                                 <img src="{% static 'website/images/icons/heart.png' %}" class="featured-block-image img-fluid" alt="">
 
-                                <p class="featured-block-text"><strong>Caring</strong> Earth</p>
+                                <p class="featured-block-text"> Facilitation de l'accès aux <strong>services sociaux</strong> de base des populations vulnérable</p>
                             </a>
                         </div>
                     </div>
@@ -229,7 +269,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <a href="donate.html" class="d-block">
                                 <img src="{% static 'website/images/icons/receive.png' %}" class="featured-block-image img-fluid" alt="">
 
-                                <p class="featured-block-text">Make a <strong>Donation</strong></p>
+                                <p class="featured-block-text">La <strong>Securité</strong> des communautés</p>
                             </a>
                         </div>
                     </div>
@@ -239,7 +279,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                             <a href="donate.html" class="d-block">
                                 <img src="{% static 'website/images/icons/scholarship.png' %}" class="featured-block-image img-fluid" alt="">
 
-                                <p class="featured-block-text"><strong>Scholarship</strong> Program</p>
+                                <p class="featured-block-text">L'amelioration des conditions du secteur <strong>Educatif</strong> </p>
                             </a>
                         </div>
                     </div>
@@ -248,7 +288,7 @@ https://templatemo.com/tm-581-kind-heart-charity
             </div>
         </section>
 
-        <section class="section-padding section-bg" id="section_2">
+        <section class="section-padding section-bg" id="section_3">
             <div class="container">
                 <div class="row">
 
@@ -259,7 +299,7 @@ https://templatemo.com/tm-581-kind-heart-charity
 
                     <div class="col-lg-6 col-12">
                         <div class="custom-text-box">
-                            <h2 class="mb-2">Our Story</h2>
+                            <h2 class="mb-2">Nos objectifs</h2>
 
                             <h5 class="mb-3">Kind Heart Charity, Non-Profit Organization</h5>
 
@@ -372,123 +412,6 @@ https://templatemo.com/tm-581-kind-heart-charity
                         <a href="#" class="me-4">Make a donation</a>
 
                         <a href="#section_4" class="custom-btn btn smoothscroll">Become a volunteer</a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-
-        <section class="section-padding" id="section_3">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-12 col-12 text-center mb-4">
-                        <h2>Our Causes</h2>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                        <div class="custom-block-wrap">
-                            <img src="{% static 'website/images/causes/group-african-kids-paying-attention-class.jpg' %}"
-                                class="custom-block-image img-fluid" alt="">
-
-                            <div class="custom-block">
-                                <div class="custom-block-body">
-                                    <h5 class="mb-3">Children Education</h5>
-
-                                    <p>Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm tokito</p>
-
-                                    <div class="progress mt-4">
-                                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-
-                                    <div class="d-flex align-items-center my-2">
-                                        <p class="mb-0">
-                                            <strong>Raised:</strong>
-                                            $18,500
-                                        </p>
-
-                                        <p class="ms-auto mb-0">
-                                            <strong>Goal:</strong>
-                                            $32,000
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <a href="donate.html" class="custom-btn btn">Donate now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                        <div class="custom-block-wrap">
-                            <img src="{% static 'website/images/causes/poor-child-landfill-looks-forward-with-hope.jpg' %}"
-                                class="custom-block-image img-fluid" alt="">
-
-                            <div class="custom-block">
-                                <div class="custom-block-body">
-                                    <h5 class="mb-3">Poverty Development</h5>
-
-                                    <p>Sed leo nisl, posuere at molestie ac, suscipit auctor mauris. Etiam quis metus
-                                        tempor</p>
-
-                                    <div class="progress mt-4">
-                                        <div class="progress-bar w-50" role="progressbar" aria-valuenow="50"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-
-                                    <div class="d-flex align-items-center my-2">
-                                        <p class="mb-0">
-                                            <strong>Raised:</strong>
-                                            $27,600
-                                        </p>
-
-                                        <p class="ms-auto mb-0">
-                                            <strong>Goal:</strong>
-                                            $60,000
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <a href="donate.html" class="custom-btn btn">Donate now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="custom-block-wrap">
-                            <img src="{% static 'website/images/causes/african-woman-pouring-water-recipient-outdoors.jpg' %}"
-                                class="custom-block-image img-fluid" alt="">
-
-                            <div class="custom-block">
-                                <div class="custom-block-body">
-                                    <h5 class="mb-3">Supply drinking water</h5>
-
-                                    <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-                                    </p>
-
-                                    <div class="progress mt-4">
-                                        <div class="progress-bar w-100" role="progressbar" aria-valuenow="100"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-
-                                    <div class="d-flex align-items-center my-2">
-                                        <p class="mb-0">
-                                            <strong>Raised:</strong>
-                                            $84,600
-                                        </p>
-
-                                        <p class="ms-auto mb-0">
-                                            <strong>Goal:</strong>
-                                            $100,000
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <a href="donate.html" class="custom-btn btn">Donate now</a>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -974,105 +897,4 @@ https://templatemo.com/tm-581-kind-heart-charity
             </div>
         </section>
     </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-12 mb-4">
-                    <img src="{% static 'website/images/logo.png' %}" class="logo img-fluid" alt="">
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mb-4">
-                    <h5 class="site-footer-title mb-3">Quick Links</h5>
-
-                    <ul class="footer-menu">
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Our Story</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Newsroom</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Causes</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Become a volunteer</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Partner with us</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mx-auto">
-                    <h5 class="site-footer-title mb-3">Contact Infomation</h5>
-
-                    <p class="text-white d-flex mb-2">
-                        <i class="bi-telephone me-2"></i>
-
-                        <a href="tel: 305-240-9671" class="site-footer-link">
-                            305-240-9671
-                        </a>
-                    </p>
-
-                    <p class="text-white d-flex">
-                        <i class="bi-envelope me-2"></i>
-
-                        <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                            donate@charity.org
-                        </a>
-                    </p>
-
-                    <p class="text-white d-flex mt-3">
-                        <i class="bi-geo-alt me-2"></i>
-                        Akershusstranda 20, 0150 Oslo, Norway
-                    </p>
-
-                    <a href="#" class="custom-btn btn mt-3">Get Direction</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="site-footer-bottom">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-6 col-md-7 col-12">
-                        <p class="copyright-text mb-0">Copyright © 2024 <a href="#">Coordination Generale du PURS : <a href="https://templatemo.com" target="_blank">TemplateMo</a><br>Distribution:<a href="https://themewagon.com">ThemeWagon</a>
-                        </p>
-                    </div>
-
-                    <div class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto">
-                        <ul class="social-icon">
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-twitter"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-facebook"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-instagram"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-linkedin"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="https://youtube.com/templatemo" class="social-icon-link bi-youtube"></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT FILES -->
-    <script src="{% static 'website/js/jquery.min.js' %}"></script>
-    <script src="{ % static 'website/js/bootstrap.min.js' %}"></script>
-    <script src="{ % static 'website/js/jquery.sticky.js' %}"></script>
-    <script src="{ % static 'website/js/click-scroll.js' %}"></script>
-    <script src="{ % static 'website/js/counter.js' %}"></script>
-    <script src="{ % static 'website/js/custom.js' %}"></script>
-
-</body>
-
-</html>
+{% endblock %}
