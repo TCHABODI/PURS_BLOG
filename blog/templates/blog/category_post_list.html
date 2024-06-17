@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}{{ category.name }} - Blog Posts{% endblock %}
+
+{% block content %}
+<header class="pages-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12 text-center my-3">
+                <h3 class="text-white"> Catégorie <i class="bi bi-arrow-right"></i> {{ category.name }}</h3>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="section-padding section-bg actuality-section" id="section_2">
+    <div class="container">
+        <div class="row">
+            <!-- Colonne gauche : Liste des articles -->
+            <div class="col-lg-8 col-md-7 col-12">
+                <a class="bg-blue" href="{% url 'blog:blog' %}">Toute l'actualité</a>
+                <div class="row">
+                    {% if posts %}
+                        {% for post in posts %}
+                            <div class="col-lg-6 col-md-12 col-12 my-3 mb-lg-0">
+                                <div class="custom-block-wrap">
+                                    {% if post.main_image %}
+                                    <a href="{% url 'blog:post' post.slug %}">
+                                        <img src="{{ post.main_image.url }}" alt="{{ post.title }}" class="custom-block-image img-fluid" style="max-height: 170px; height: 170px; object-fit: cover;">
+                                    </a>
+                                    {% else %}
+                                        <img src="{% static 'path/to/default_image.jpg' %}" class="custom-block-image img-fluid" alt="{{ post.title }}" style="min-height: 200px; height: 200px; object-fit: cover;">
+                                    {% endif %}
+                                    <div class="custom-block" style="min-height: 150px;">
+                                    <div class="custom-block-body" style="min-height: 150px;">
+                                        <h6 class="mb-3"><a href="{% url 'blog:post' post.slug %}" class="mb-3">{{ post.title|safe }}</a> </h6>
+                                        <div class="progress mt-4">
+                                            <div class="progress-bar w-100" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="d-flex align-items-center align-items-end mt-2">
+                                            <p class="mb-2"><strong>Publié le :</strong> {{ post.created_on }}</p>
+                                            <p class="ms-auto mb-0">
+                                                <a href="{% url 'blog:category' post.category.id %}" class="badge custom-badge " >
+                                                    {{ post.category.name }}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-12 my-3">
+                            <div class="alert alert-info" role="alert">
+                                Aucun article trouvé dans la catégorie : <strong>{{category.name}}.</strong>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Pagination -->
+                <hr>
+                {% include 'paginator/paginator.html' %}
+            </div>
+            {% include 'blog/blog_side_bar.html' %}
+        </div>
+    </div>
+</section>
+{% endblock %}

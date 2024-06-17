@@ -1,0 +1,38 @@
+{% load static %}
+<div class="col-lg-4 col-md-5 col-12">
+    <form class="custom-form search-form mb-4" action="" method="get" role="form">
+        <input class="form-control bg-white" type="search" name="q" placeholder="Recherche" aria-label="Search">
+        <button type="submit" class="form-control">
+            <i class="bi-search"></i>
+        </button>
+    </form>
+
+    <h5 class="mt-5 mb-3">Publications récentes</h5>
+    {% for post in recent_posts %}
+        <div class="news-block news-block-two-col d-flex mt-4">
+            <div class="news-block-two-col-image-wrap">
+                <a href="{% url 'blog:post' post.slug %}">
+                    <img src="{{ post.main_image.url }}" class="news-image img-fluid" alt="{{ post.title }}" style="min-width: 150px; min-height: 112px;">
+                </a>
+            </div>
+            <div class="news-block-two-col-info">
+                <div class="news-block-title mb-2">
+                    <h6><a href="{% url 'blog:post' post.slug %}" class="news-block-title-link">{{ post.title }}</a></h6>
+                </div>
+                <div class="news-block-date">
+                    <p><i class="bi-calendar4 custom-icon me-1"></i>{{ post.created_on }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="category-block d-flex flex-column mt-5">
+        <h5 class="mb-3">Catégories</h5>
+        {% for category in categories %}
+            <a href="{% url 'blog:category' category.pk %}" class="category-block-link">
+                {{ category.name }}
+                <span class="badge">{{ category.blog_set.count }}</span>
+            </a>
+        {% endfor %}
+    </div>
+</div>

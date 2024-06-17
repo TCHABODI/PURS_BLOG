@@ -1,114 +1,93 @@
-from itertools import chain
-from django.contrib.auth.decorators import login_required, permission_required
-from django.forms import formset_factory
-from django.shortcuts import redirect, render
-from . import models, forms
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import request
 from django.shortcuts import get_object_or_404
-from django.db.models import Q
-from django.core.paginator import Paginator
-# Create your views here.
-from .models import Photo
-@login_required
-def deletephoto(request, id):
-    this_photo = models.Photo.objects.get(id=id)
-    if request.method == 'POST':
-        this_photo.delete()
-        return redirect('home')
-    return render(request, 'blog/delete_photo.html', context={'this_photo': this_photo})
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
 
-@login_required
-@permission_required('blog.add_photo', raise_exception=True)
-def photo_upload(request):
-    form = forms.PhotoForm()
-    if request.method == 'POST':
-        form = forms.PhotoForm(request.POST, request.FILES)
-        if form.is_valid():
-            photo = form.save(commit=False)
-            # set the uploader to the user before saving the model
-            photo.uploader = request.user
-            # now we can save
-            photo.save()
-            return redirect('home')
-    return render(request, 'blog/photo_upload.html', context={'form': form})
-
-@login_required
-@permission_required('blog_and_photo_upload', raise_exception=True)
-def blog_and_photo_upload(request):
-    blog_form = forms.BlogForm()
-    photo_form = forms.PhotoForm()
-    if request.method == 'POST':
-    # handle the POST request here
-        blog_form = forms.BlogForm(request.POST)
-        photo_form = forms.PhotoForm(request.POST, request.FILES)
-        if all([blog_form.is_valid(), photo_form.is_valid()]):
-            photo = photo_form.save(commit=False)
-            photo.uploader = request.user
-            photo.save()
-            blog = blog_form.save(commit=False)
-            blog.author = request.user
-            blog.photo = photo
-            blog.save()
-            #blog.contributors.add(request.user, through_defaults={'contribution': 'Auteur principal'})
-
-            return redirect('home')
-    context = {
-        'blog_form': blog_form,
-        'photo_form': photo_form,
-    }
-    return render(request, 'blog/create_blog_post.html', context=context)
-
-@login_required
-def view_blog(request, blog_id):
-    blog = get_object_or_404(models.Blog, id=blog_id)
-    return render(request, 'blog/view_blog.html', {'blog': blog})
-
-@login_required
-def edit_blog(request, blog_id):
-    blog = get_object_or_404(models.Blog, id=blog_id)
-    edit_form = forms.BlogForm(instance=blog)
-    delete_form = forms.DeleteBlogForm()
-    if request.method == 'POST':
-        if 'edit_blog' in request.POST:
-            edit_form = forms.BlogForm(request.POST, instance=blog)
-            if edit_form.is_valid():
-                edit_form.save()
-                return redirect('home')
-        if 'delete_blog' in request.POST:
-            delete_form = forms.DeleteBlogForm(request.POST)
-            if delete_form.is_valid():
-                blog.delete()
-                return redirect('home')
-    context = {
-        'edit_form': edit_form,
-        'delete_form': delete_form,
-}
-    return render(request, 'blog/edit_blog.html', context=context)
-
-@login_required
-@permission_required('blog.add_photo', raise_exception=True)
-def create_multiple_photos(request):
-    PhotoFormSet = formset_factory(forms.PhotoForm, extra=5)
-    formset = PhotoFormSet()
-    if request.method == 'POST':
-        formset = PhotoFormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            for form in formset:
-                if form.cleaned_data:
-                    photo = form.save(commit=False)
-                    photo.uploader = request.user
-                    photo.save()
-            return redirect('home')
-    return render(request, 'blog/create_multiple_photos.html', {'formset': formset})
-
-@login_required
-def follow_users(request):
-    form = forms.FollowUsersForm(instance=request.user)
-    if request.method == 'POST':
-        form = forms.FollowUsersForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    return render(request, 'blog/follow_users_form.html', context={'form': form})
+from blog.forms import BlogPostForm
+from blog.models import Blog, Category
 
 
+class BlogHome(ListView):
+    model = Blog
+    context_object_name = 'posts'
+    template_name = 'blog/blogpost_list.html'  # Chemin du template pour afficher la liste des articles
+    paginate_by = 6
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        page_number = self.request.GET.get("page", None)
+        if self.request.user.is_authenticated:
+            return queryset
+        return queryset.filter(published=True)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['recent_posts'] = Blog.objects.filter(published=True).order_by('-created_on')[:3]
+        context['categories'] = Category.objects.all()
+        return context
+
+# Vue pour le détail d'un article
+class BlogPostDetailView(DetailView):
+    model = Blog
+    context_object_name = 'post'
+    template_name = 'blog/post_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['images'] = self.object.images.all()
+        return context
+
+class BlogPostUpdateView(UpdateView):
+    model = Blog
+    template_name = 'posts/blogpost_edit.html'
+    fields = ['title', 'content', 'published','main_image']
+
+
+class BlogPostImageFormSet:
+    pass
+
+
+class BlogPostCreateView(CreateView):
+    model = Blog
+    form_class = BlogPostForm
+    template_name = 'posts/blogpost_create.html'
+    success_url = reverse_lazy('blogpost_list')
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        if self.request.POST:
+            data['images'] = BlogPostImageFormSet(self.request.POST, self.request.FILES)
+        else:
+            data['images'] = BlogPostImageFormSet()
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        images = context['images']
+        self.object = form.save()
+        if images.is_valid():
+            images.instance = self.object
+            images.save()
+        return super().form_valid(form)
+
+
+# class CoordinatorDetailView(DetailView):
+#     model = coordinator
+#     context_object_name = 'coordinator'
+
+class CategoryPostListView(ListView):
+    model = Blog
+    context_object_name = 'posts'
+    template_name = 'blog/category_post_list.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, pk=self.kwargs['category_id'])
+        queryset = Blog.objects.filter(category=self.category, published=True)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = self.category
+        context['categories'] = Category.objects.all()
+        return context

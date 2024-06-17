@@ -13,10 +13,12 @@
     <!-- CSS FILES -->
     <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}">
     <link href="{% static 'website/css/bootstrap-icons.css' %}" rel="stylesheet">
-    <link href="{% static 'website/css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
-
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <link href="{% static 'website/css/templatemo-kind-heart-charity.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Link to Bootstrap CSS from a CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <!--
     TemplateMo 581 Kind Heart Charity
 
@@ -26,122 +28,176 @@
 
 </head>
 
-<body id="section_1">
+<body class="section-bg" id="section_1">
 
-    <header class="site-header">
+<!--     <header class="site-header"> -->
+<!--         <div class="container"> -->
+<!--             <div class="row"> -->
+
+<!--                 <div class="col-lg-8 col-12 d-flex flex-wrap"> -->
+<!--                     <p class="d-flex me-4 mb-0"> -->
+<!--                         <i class="bi-geo-alt me-2"></i> -->
+<!--                         5eme étage de l’immeuble SGI-Togo GTA-Lomé -->
+<!--                     </p> -->
+
+<!--                     <p class="d-flex mb-0"> -->
+<!--                         <i class="bi-envelope me-2"></i> -->
+
+<!--                         <a href="mailto:secretariat.coordination@purs.gouv.tg"> -->
+<!--                             secretariat.coordination@purs.gouv.tg -->
+<!--                         </a> -->
+<!--                     </p> -->
+<!--                 </div> -->
+
+<!--                 <div class="col-lg-3 col-12 ms-auto d-lg-block d-none"> -->
+<!--                     <ul class="social-icon"> -->
+<!--                         <li class="social-icon-item"> -->
+<!--                             <a href="#" class="social-icon-link bi-twitter"></a> -->
+<!--                         </li> -->
+
+<!--                         <li class="social-icon-item"> -->
+<!--                             <a href="#" class="social-icon-link bi-facebook"></a> -->
+<!--                         </li> -->
+
+<!--                         <li class="social-icon-item"> -->
+<!--                             <a href="#" class="social-icon-link bi-instagram"></a> -->
+<!--                         </li> -->
+
+<!--                         <li class="social-icon-item"> -->
+<!--                             <a href="#" class="social-icon-link bi-youtube"></a> -->
+<!--                         </li> -->
+
+<!--                         <li class="social-icon-item"> -->
+<!--                             <a href="#" class="social-icon-link bi-whatsapp"></a> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+
+<!--             </div> -->
+<!--         </div> -->
+<!--     </header> -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-lg">
         <div class="container">
-            <div class="row">
+            <a class="navbar-brand " href="{% url 'home' %}">
+                <img src="{% static 'website/images/rtg.jpeg' %}" class="logo img-fluid" alt="logo republique togolaise">
+                <span>
+                    PURS
+                    <small >Programme d’urgence de  </small>
+                    <small > renforcement de la résilience </small>
+                    <small>et de la sécurité des communautés</small>
+                </span>
+            </a>
 
-                <div class="col-lg-8 col-12 d-flex flex-wrap">
-                    <p class="d-flex me-4 mb-0">
-                        <i class="bi-geo-alt me-2"></i>
-                        5eme étage de l’immeuble SGI-Togo GTA-Lomé
-                    </p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                    <p class="d-flex mb-0">
-                        <i class="bi-envelope me-2"></i>
+            <div class="collapse navbar-collapse bg-white" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link click-scroll dropdown-toggle" href="{% url 'home' %}" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Coordination</a>
+                        <ul class="dropdown-menu dropdown-menu-light " aria-labelledby="navbarLightDropdownMenuLink">
+                            <li><a class="dropdown-item" href="news.html">Les Composantes du PURS</a></li>
+                            <li><a class="dropdown-item" href="news-detail.html">Nos Axes</a></li>
+                        </ul>
+                    </li>
 
-                        <a href="mailto:coordination.generale@purs.gouv.tg">
-                            coordination.generale@purs.gouv.tg
-                        </a>
-                    </p>
-                </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'website:current_coordinator' %}">Coordonnateur</a>
+                    </li>
 
-                <div class="col-lg-3 col-12 ms-auto d-lg-block d-none">
-                    <ul class="social-icon">
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-twitter"></a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog:blog' %}">Actualités</a>
+                    </li>
 
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-facebook"></a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_3">Nos actions</a>
+                    </li>
 
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-instagram"></a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_4">Blog</a>
+                    </li>
 
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-youtube"></a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="contact.html">Contactes</a>
+                    </li>
 
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-whatsapp"></a>
-                        </li>
-                    </ul>
-                </div>
-
+                </ul>
             </div>
         </div>
-    </header>
+    </nav>
+    {% block content %}
 
-{% block content %}
+    {% endblock %}
 
-{% endblock %}
-
-<footer class="site-footer text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-12 mb-4">
-                    <img src="{% static 'website/images/rtg.jpeg' %}" class="logo img-fluid" alt="">
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mb-4">
-                    <h5 class="site-footer-title mb-3">Quick Links</h5>
-
-                    <ul class="footer-menu text-white">
-                        <li class="footer-menu-item"><a href="#" class="text-black footer-menu-link ">Our Story</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="text-black footer-menu-link">Newsroom</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="text-black footer-menu-link">Causes</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Become a volunteer</a></li>
-
-                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Partner with us</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mx-auto">
-                    <h5 class="site-footer-title mb-3">Contact Infomation</h5>
-
-                    <p class="text-black d-flex mb-2">
-                        <i class="bi-telephone me-2"></i>
-
-                        <a href="tel: 305-240-9671" class=" text-black site-footer-link">
-                            305-240-9671
-                        </a>
-                    </p>
-
-                    <p class="text-black d-flex">
-                        <i class="bi-envelope me-2"></i>
-
-                        <a href="mailto:info@yourgmail.com" class="text-black site-footer-link">
-                            donate@charity.org
-                        </a>
-                    </p>
-
-                    <p class="text-black d-flex mt-3">
-                        <i class="bi-geo-alt me-2"></i>
-                        Akershusstranda 20, 0150 Oslo, Norway
-                    </p>
-
-                    <a href="#" class="custom-btn btn mt-3">Get Direction</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="site-footer-bottom">
+    <footer class="site-footer">
             <div class="container">
                 <div class="row">
-
-                    <div class="col-lg-6 col-md-7 col-12 d-flex justify-content-center align-items-center mx-auto">
-                        <p class="copyright-text mb-0">Copyright © 2024 <a href="#">Coordination Generale du PURS </a> </p>
+                    <div class="col-lg-4 col-6 mb-2">
+                        <img src="{% static 'website/images/rtg.jpeg' %}" class="logo img-fluid" alt="">
                     </div>
 
+                    <div class="col-lg-3 col-md-6 col-6 mb-2">
+                        <h5 class="site-footer-title mb-3">Liens rapides</h5>
+
+                        <ul class="footer-menu">
+                            <li class="footer-menu-item"><a href="#" class="text-black footer-menu-link ">Actualités</a></li>
+
+                            <li class="footer-menu-item"><a href="#" class="text-black footer-menu-link">Chiffres clés</a></li>
+
+                            <li class="footer-menu-item"><a href="#" class="text-black footer-menu-link">Acueil</a></li>
+
+                             <li class="footer-menu-item"><a href="#" class="text-black footer-menu-link">Nos axes</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-12 mx-auto">
+                        <h5 class="site-footer-title mb-3">Contactes</h5>
+
+                        <p class="text-black d-flex mb-2">
+                            <i class="bi-telephone me-2"></i>
+
+                            <a href="tel: +228-xx-xx-xx-xx" class=" text-black site-footer-link">
+                                +228-xx-xx-xx-xx
+                            </a>
+                        </p>
+
+                        <p class="text-black d-flex">
+                            <i class="bi-envelope me-2"></i>
+
+                            <a href="secretariat.coordination@purs.gouv.tg" class="text-black site-footer-link">
+                                secretariat.coordination@purs.gouv.tg
+                            </a>
+                        </p>
+                        <p class="text-black d-flex">
+                            <i class="bi-envelope me-2"></i>
+
+                            <a href="coordination.generale@purs.gouv.tg" class="text-black site-footer-link">
+                                coordination.generale@purs.gouv.tg
+                            </a>
+                        </p>
+
+                        <p class="text-black d-flex mt-3">
+                            <i class="bi-geo-alt me-2"></i>
+                            5eme étage de l’immeuble SGI-Togo GTA-Lomé
+                        </p>
+
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-7 col-12 d-flex justify-content-center align-items-center mx-auto">
+                            <p class="copyright-text mb-0">Copyright © 2024 <a href="#">Coordination Generale du PURS </a> </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
     </footer>
     <!-- JAVASCRIPT FILES -->
     <script src="{% static 'website/js/jquery.min.js' %}"></script>
@@ -150,6 +206,7 @@
     <script src="{% static 'website/js/click-scroll.js' %}"></script>
     <script src="{% static 'website/js/counter.js' %}"></script>
     <script src="{% static 'website/js/custom.js' %}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

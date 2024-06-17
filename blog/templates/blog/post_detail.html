@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<header class="pages-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center my-3">
+                <h3 class="text-white">Titre : {{ post.title }}</h3>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section-padding section-bg">
+    <div class="container section-blog-detail">
+        <div class="row  ">
+            <div class="col-lg-12">
+                <!-- Carousel pour les images secondaires -->
+                <div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="carousel">
+                    <!-- Indicateurs -->
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                        {% for image in images %}
+                            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter }}"></li>
+                        {% endfor %}
+                    </ol>
+                    <!-- Slides -->
+                    <div class="carousel-inner">
+                        <!-- Première image -->
+                        <div class="carousel-item active">
+                            {% if post.main_image %}
+                                <img src="{{ post.main_image.url }}" class="carousel-image img-fluid" alt="{{ post.title }}">
+                            {% else %}
+                                <img src="{% static 'path/to/default_image.jpg' %}" class="d-block w-100 carousel-image" alt="{{ post.title }}">
+                            {% endif %}
+                        </div>
+                        <!-- Images secondaires -->
+                        {% for image in images %}
+                            <div class="carousel-item">
+                                <img src="{{ image.image.url }}" class="d-block w-100 carousel-image" alt="Image secondaire {{ forloop.counter }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Contrôles du carousel -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Contenu de l'article -->
+                <div class="text-black">
+                    {{ post.content|safe|linebreaks }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block styles %}
+    {{ block.super }}
+    <style>
+        .section-bg {
+            background-color: #ffffff; /* Blanc */
+        }
+        .post-content {
+            color: #ffffff; /* Blanc */
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script>
+        // Optionnel : Activer le carousel avec JavaScript pour éviter les erreurs potentielles
+        var myCarousel = document.getElementById('carouselExampleIndicators');
+        var carousel = new bootstrap.Carousel(myCarousel);
+    </script>
+{% endblock %}
